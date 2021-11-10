@@ -1,15 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-from utils import read_csv
+from utils import read_csv, print_acceptable_features
 import warnings
 warnings.filterwarnings("ignore")
 
 if len(sys.argv) < 3:
     print("Usage: python histogram.py dataset_name num_of_col")
+    print_acceptable_features()
+    exit()
 num_col = int(sys.argv[2])
 if num_col < 6 or num_col > 18:
     print("num_of_col must be between 6 and 18")
+    print_acceptable_features()
+    exit()
 
 data = read_csv(sys.argv[1])
 names = data[0]
@@ -27,5 +31,3 @@ plt.title(names[num_col])
 plt.xlabel("Marks")
 plt.ylabel("Number of students")
 plt.show()
-
-#print(data)

@@ -10,22 +10,28 @@ def print_func_features(name_func, names, features, widths, f):
         print(line.center(widths[i]), end='  ')
     print('')
 
-
+if len(sys.argv) < 2:
+    print('Usage: python describe.py dataset_name')
+    exit()
 not_num_cols_ind = {1, 2, 3, 4, 5}
-fin = open(sys.argv[1], "r")
-names = np.array(fin.readline()[:-1].split(','))
-features = dict()
-for line in fin:
-    for i, elem in enumerate(line[:-1].split(',')):
-        if i not in not_num_cols_ind:
-            if elem == '':
-                elem = '0'
-            elem = float(elem)
-        if names[i] not in features.keys():
-            features[names[i]] = [elem]
-        else:
-            features[names[i]].append(elem)
-fin.close()
+try:
+    fin = open(sys.argv[1], "r")
+    names = np.array(fin.readline()[:-1].split(','))
+    features = dict()
+    for line in fin:
+        for i, elem in enumerate(line[:-1].split(',')):
+            if i not in not_num_cols_ind:
+                if elem == '':
+                    elem = '0'
+                elem = float(elem)
+            if names[i] not in features.keys():
+                features[names[i]] = [elem]
+            else:
+                features[names[i]].append(elem)
+    fin.close()
+except Exception as e:
+    print(f'Error with file: {e}')
+    exit()
 print(' ' * 7, end='')
 widths = []
 for name in names[6:]:

@@ -5,6 +5,14 @@ import numpy as np
 #
 # arr = np.array([[1, 2, 3], [3, 2, 1], [0, 9, -1]])
 # print(arr)
-# print(arr.argmax(axis=0))
+# print(np.delete(arr, 1, 1))
 
-print(np.exp(-0.5))
+# arr = np.array([1, 2, 3, np.nan])
+# print(np.nanmean(arr))
+
+#print(np.exp(-0.5))
+
+font = {'family' : 'DejaVu Sans',
+          'weight' : 'light',
+          'size'   : 7}
+print(*font)
